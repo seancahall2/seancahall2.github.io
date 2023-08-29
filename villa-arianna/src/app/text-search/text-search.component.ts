@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { interval, take, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'text-search',
@@ -9,11 +10,37 @@ import { interval, take, lastValueFrom } from 'rxjs';
 })
 export class TextSearchComponent {
   data: any;
+  message: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiService: ApiService) { }
 
   ngOnInit() {
-    this.getData();
+    // this.doSearch();
+    // this.newMethod();
+  }
+
+  callExpress() {
+    this.apiService.getMessage().subscribe(data => {
+      this.message = data;
+    });
+  }
+
+  testAuth() {
+    this.apiService.testAuth().subscribe(data => {
+      this.message = data;
+    });
+  }
+
+  getFolderItems() {
+    this.apiService.getFolderItems().subscribe(items => {
+      this.data = items;
+    });
+  }
+
+  doSearch() {
+    this.apiService.doSearch('chlamys').subscribe(items => {
+      this.data = items;
+    });
   }
 
   async getData() {
@@ -24,6 +51,7 @@ export class TextSearchComponent {
     const httpOptions = {
       headers: headers
     };
+
     try {
       this.data = await lastValueFrom(this.http.get(url, httpOptions));
       console.log('here');

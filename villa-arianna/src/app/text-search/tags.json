@@ -1,0 +1,142 @@
+{
+    "Room Function": [
+        "Fauces",
+        "Atrium",
+        "Tablinum",
+        "Corridor",
+        "Antechamber",
+        "Cubiculum",
+        "Peristyle",
+        "Oecus",
+        "Triclinium",
+        "Diaeta",
+        "Portico"
+    ],
+    "Architectural Construction ": [
+        "Opus incertum",
+        "Opus reticulatum",
+        "Opus quasireticulatum",
+        "Opus testaceum",
+        "Opus mixtum vittatum"
+    ],
+    "Wall Painting Style": [
+        "First Style",
+        "Second Style",
+        "Third Style",
+        "Fourth Style"
+    ],
+    "Wall Painting Features": [
+        {
+            "Imitative Stone": [
+                "Giallo antico",
+                "Serpentine",
+                "Alabaster",
+                "Porphyry"
+            ]
+        },
+        {
+            "Architectonic": [
+                "Aedicula",
+                "Parapet",
+                "Column",
+                "Entablature",
+                "Architrave",
+                "Boss",
+                "Pier",
+                "Arch",
+                "Colonnade",
+                "Coffered ceiling",
+                "Fasciae",
+                "Cornice",
+                "Orthostate",
+                "Capitals",
+                "Bases",
+                "Frieze",
+                "Pedestal",
+                "Plinth",
+                "Pilaster",
+                "Podium",
+                "Metope",
+                "Pillar",
+                "Acroteria",
+                "Molding",
+                "Cornice"
+            ]
+        },
+        {
+            "Ornamental": [
+                "Candelabrum",
+                "Tapestry",
+                "Carpet Style",
+                "Finial",
+                "Shrine"
+            ]
+        },
+        {
+            "Objects": [
+                "Dürchblicke",
+                "Pinax",
+                "Oscillum",
+                "Tondo",
+                "Cameo",
+                "Vessel",
+                "Thyrsus",
+                "Corona",
+                "Mirror",
+                "Lyre",
+                "Tragic Mask",
+                "Gorgon Mask",
+                "Tabula"
+            ]
+        },
+        {
+            "Ephemeral": [
+                "Garland",
+                "Ivy",
+                "Lotus",
+                "Grapevine",
+                "Foliage",
+                "Palmette"
+            ]
+        },
+        {
+            "Scene": [
+                "Vignette",
+                "Sacro-idyllic",
+                "Mythological Narrative"
+            ]
+        },
+        {
+            "Human Figure": [
+                "Female",
+                "Male"
+            ]
+        },
+        {
+            "Mythological Beings": [
+                "Oceanus",
+                "Dionysus",
+                "Jupiter",
+                "Ariadne",
+                "Winged Eros",
+                "Cupid",
+                "Daimon",
+                "Amorino",
+                "Gryphon",
+                "Hippocampus"
+            ]
+        },
+        {
+            "Natural": [
+                "Dolphin",
+                "Sea Lion",
+                "Bird",
+                "Swan",
+                "Panther"
+            ]
+        },
+        {
+            "Writing": "Graffiti"
+        }
+    ]
+}

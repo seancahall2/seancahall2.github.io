@@ -1,0 +1,389 @@
+<aside class="sidebar sidebar--left">
+    <div class="widget-search widget">
+        <h4 class="widget__title">Search</h4>
+        <form class="widget-search__form" role="search" method="get" action="https://roman-gardens.github.io/search/">
+            <label><input class="widget-search__field" type="search" placeholder="search..." name="q" id="search-input"
+                    aria-label="search..."></label>
+            <input class="widget-search__submit" type="submit" value="Search">
+        </form>
+    </div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://roman-gardens.github.io/js/leaflet-tilelayer-colorfilter.min.js"></script>
+    <script src="https://roman-gardens.github.io/js/leaflet.fullscreen.min.js"></script>
+    <script src="https://roman-gardens.github.io/js/L.Control.Basemaps-min.js"></script>
+    <link href="https://roman-gardens.github.io/css/leaflet.fullscreen.css" rel="stylesheet">
+    <link href="https://roman-gardens.github.io/css/L.Control.Basemaps.css" rel="stylesheet">
+    <div class="widget-taglist widget">
+        <h4 class="widget__title">Map</h4>
+        <div class="widget__content">
+            <div id="map"
+                class="leaflet-map leaflet-container leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag"
+                tabindex="0" style="position: relative;">
+                <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+                    <div class="leaflet-pane leaflet-tile-pane">
+                        <div class="leaflet-layer "
+                            style="z-index: 1; filter: brightness(100%) contrast(100%) saturate(30%) opacity(100%) sepia(10%);">
+                        </div>
+                        <div class="leaflet-layer "
+                            style="z-index: 1; filter: brightness(100%) contrast(100%) saturate(30%) opacity(100%) sepia(10%);">
+                        </div>
+                        <div class="leaflet-layer "
+                            style="z-index: 1; filter: brightness(100%) contrast(100%) saturate(30%) opacity(100%) sepia(10%); opacity: 1;">
+                            <div class="leaflet-tile-container leaflet-zoom-animated"
+                                style="z-index: 17; transform: translate3d(95px, 150px, 0px) scale(0.25);"></div>
+                            <div class="leaflet-tile-container leaflet-zoom-animated"
+                                style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt=""
+                                    role="presentation" src="https://a.tile.openstreetmap.org/17/67624/51326.png"
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    style="width: 256px; height: 256px; transform: translate3d(-43px, -16px, 0px); opacity: 1;"><img
+                                    alt="" role="presentation" src="https://b.tile.openstreetmap.org/17/67625/51326.png"
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    style="width: 256px; height: 256px; transform: translate3d(213px, -16px, 0px); opacity: 1;"><img
+                                    alt="" role="presentation" src="https://b.tile.openstreetmap.org/17/67624/51327.png"
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    style="width: 256px; height: 256px; transform: translate3d(-43px, 240px, 0px); opacity: 1;"><img
+                                    alt="" role="presentation" src="https://c.tile.openstreetmap.org/17/67625/51327.png"
+                                    class="leaflet-tile leaflet-tile-loaded"
+                                    style="width: 256px; height: 256px; transform: translate3d(213px, 240px, 0px); opacity: 1;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leaflet-pane leaflet-shadow-pane"></div>
+                    <div class="leaflet-pane leaflet-overlay-pane"></div>
+                    <div class="leaflet-pane leaflet-marker-pane">
+                        <div class="leaflet-marker-icon dot leaflet-zoom-animated leaflet-interactive" tabindex="0"
+                            style="margin-left: -6px; margin-top: -6px; width: 12px; height: 12px; transform: translate3d(127px, 199px, 0px); z-index: 199;">
+                        </div>
+                    </div>
+                    <div class="leaflet-pane leaflet-tooltip-pane"></div>
+                    <div class="leaflet-pane leaflet-popup-pane"></div>
+                    <div class="leaflet-proxy leaflet-zoom-animated"
+                        style="transform: translate3d(1.73119e+07px, 1.31397e+07px, 0px) scale(65536);"></div>
+                </div>
+                <div class="leaflet-control-container">
+                    <div class="leaflet-top leaflet-left">
+                        <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in"
+                                href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a
+                                class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button"
+                                aria-label="Zoom out">−</a></div>
+                        <div class="leaflet-control-fullscreen leaflet-bar leaflet-control"><a
+                                class="leaflet-control-fullscreen-button leaflet-bar-part" href="#"
+                                title="View Fullscreen"></a></div>
+                    </div>
+                    <div class="leaflet-top leaflet-right"></div>
+                    <div class="leaflet-bottom leaflet-left"></div>
+                    <div class="leaflet-bottom leaflet-right">
+                        <div class="leaflet-control-attribution leaflet-control">Basemap | <a
+                                href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a
+                                href="https://dh.gu.se/dare/">DARE</a></div>
+                    </div>
+                </div>
+            </div>
+            <script>map = L.map("map", { attributionControl: !0, fullscreenControl: !0 }).setView([40, 17], 3), map.attributionControl.setPrefix("Basemap"); var osm_lo = L.tileLayer.colorFilter("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { label: "OpenStreetMap", minZoom: 0, maxZoom: 3, attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', filter: ["brightness: 100%", "contrast: 100%", "saturation: 30%", "opacity: 100%", "sepia: 10%"] }), dare, osm_hi, div_circle; osm_lo.addTo(map), dare = L.tileLayer.colorFilter("https://dh.gu.se/tiles/imperium/{z}/{x}/{y}.png", { label: "Digital Atlas of the Roman Empire (zoom 4-11 only)", minZoom: 4, maxZoom: 11, attribution: '<a href="https://dh.gu.se/dare/">DARE</a>', errorTileUrl: "https://dh.gu.se/tiles/imperium/4/8/5.png", filter: ["brightness: 100%", "contrast: 100%", "saturation: 30%", "opacity: 100%", "sepia: 10%"] }), dare.addTo(map), osm_hi = L.tileLayer.colorFilter("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { label: "OpenStreetMap", minZoom: 12, maxZoom: 19, attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', filter: ["brightness: 100%", "contrast: 100%", "saturation: 30%", "opacity: 100%", "sepia: 10%"] }), osm_hi.addTo(map), markers = [], bounds = L.latLngBounds(), div_circle = L.divIcon({ className: "dot" }), marker = L.marker([36.31769, 5.736683], { icon: div_circle }), marker.bindPopup("<a href='https://roman-gardens.github.io/province/numidia/cuicul/house_of_castorius/'>House of Castorius, Central District (Maison du Castorius, Quartier central)</a>"), marker.addTo(map), markers.push(marker), bounds.extend(marker.getLatLng()), bounds.isValid() && (map.fitBounds(bounds.pad(.05)), map.getZoom() > 17 && map.setZoom(17))</script>
+        </div>
+    </div>
+    <div class="widget-categories widget">
+        <h4 class="widget__title">Provinces</h4>
+        <div class="widget__content">
+            <ul class="widget__list">
+                <li class="widget__item"><a class="widget__link" href="/province/achaea/">Achaea</a></li>
+                <li class="widget__item"><a class="widget__link" href="/province/africa-proconsularis/">Africa
+                        Proconsularis</a>
+                </li>
+                <li class="widget__item"><a class="widget__link" href="/province/arabia-petraea/">Arabia Petraea</a>
+                </li>
+                <li class="widget__item"><a class="widget__link" href="/province/britannia/">Britannia</a></li>
+                <li class="widget__item"><a class="widget__link" href="/province/italia/">Italia</a></li>
+                <li class="widget__item"><a class="widget__link" href="/province/judaea/">Judaea</a></li>
+                <li class="widget__item"><a class="widget__link" href="/province/numidia/">Numidia</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="widget-taglist widget">
+        <h4 class="widget__title">Keywords</h4>
+        <div class="widget__content"><a class="widget-taglist__link widget__link" href="/tags/aedicules/"
+                title="aedicules">aedicules (12)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/agriculture/" title="agriculture">agriculture
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/alabastron/" title="alabastron">alabastron (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/altars-religious-fixtures/"
+                title="altars (religious fixtures)">altars (religious fixtures) (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/ambulatio/" title="ambulatio">ambulatio (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/amphitheaters/" title="amphitheaters">amphitheaters
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/amphorae-storage-vessels/"
+                title="amphorae (storage vessels)">amphorae (storage vessels) (10)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/angiportus/" title="angiportus">angiportus (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/aqueducts/" title="aqueducts">aqueducts (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/arbors/" title="arbors">arbors (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/arcades-structural-assemblies/"
+                title="arcades (structural assemblies)">arcades (structural assemblies) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/archaeobotany/" title="archaeobotany">archaeobotany
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/artificial-islands/"
+                title="artificial islands">artificial islands (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/atrium-houses/" title="atrium houses">atrium houses
+                (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/atriums-roman-halls/"
+                title="atriums (Roman halls)">atriums (Roman halls) (23)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/baetyls/" title="baetyls">baetyls (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/balnea/" title="balnea">balnea (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/balustrades/" title="balustrades">balustrades
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/basins-vessels/" title="basins (vessels)">basins
+                (vessels) (16)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/biclinia/" title="biclinia">biclinia (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/busts-sculpture/" title="busts (sculpture)">busts
+                (sculpture) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/canals-waterways/"
+                title="canals (waterways)">canals
+                (waterways) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/candelabras-candleholders/"
+                title="candelabras (candleholders)">candelabras (candleholders) (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/cascade/" title="cascade">cascade (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/castelli-aquae/" title="castelli aquae">castelli
+                aquae
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/cauponae/" title="cauponae">cauponae (10)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/cella/" title="cella">cella (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/charcoal/" title="charcoal">charcoal (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/circuses-roman-arenas/"
+                title="circuses (Roman arenas)">circuses (Roman arenas) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/cisterns-plumbing-components/"
+                title="cisterns (plumbing components)">cisterns (plumbing components) (12)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/colonnades/" title="colonnades">colonnades (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/columns-architectural-elements/"
+                title="columns (architectural elements)">columns (architectural elements) (14)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/courtyards/" title="courtyards">courtyards (15)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/crocodile/" title="crocodile">crocodile (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/cryptoportici/" title="cryptoportici">cryptoportici
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/cubicula-domestic-spaces/"
+                title="cubicula (domestic spaces)">cubicula (domestic spaces) (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/date-palms-phoenix-dactylifera/"
+                title="date palms (Phoenix dactylifera)">date palms (Phoenix dactylifera) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/diaeta/" title="diaeta">diaeta (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/doliums/" title="doliums">doliums (9)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/domus/" title="domus">domus (36)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/dovecotes/" title="dovecotes">dovecotes (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/drains/" title="drains">drains (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/elms-ulmus/" title="elms (Ulmus)">elms (Ulmus)
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/engaged-columns/" title="engaged columns">engaged
+                columns
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/euripus/" title="euripus">euripus (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/exedrae-site-elements/"
+                title="exedrae (site elements)">exedrae (site elements) (17)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/fauces/" title="fauces">fauces (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/fences-site-elements/"
+                title="fences (site elements)">fences (site elements) (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/fishponds/" title="fishponds">fishponds (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/flowerpots/" title="flowerpots">flowerpots (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/forecourts/" title="forecourts">forecourts (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/fountains/" title="fountains">fountains (13)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/frescoes-visual-works/"
+                title="frescoes (visual works)">frescoes (visual works) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/funerary-buildings/"
+                title="funerary buildings">funerary
+                buildings (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/furniture/" title="furniture">furniture (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/garden-lights/" title="garden lights">garden lights
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/garden-ornaments/" title="garden ornaments">garden
+                ornaments (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/garden-pavilions/" title="garden pavilions">garden
+                pavilions (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/garden-soil/" title="garden soil">garden soil
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/graffiti-casual-notations/"
+                title="graffiti (casual notations)">graffiti (casual notations) (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/gutters-building-drainage-components/"
+                title="gutters (building drainage components)">gutters (building drainage components) (6)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/gymnasiums/" title="gymnasiums">gymnasiums (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/hearth/" title="hearth">hearth (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/herms/" title="herms">herms (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/hippopotamus/" title="hippopotamus">hippopotamus
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/horologium/" title="horologium">horologium (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/horti/" title="horti">horti (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/horticultural-containers/"
+                title="horticultural containers">horticultural containers (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/impluvia/" title="impluvia">impluvia (8)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/inscriptions/" title="inscriptions">inscriptions
+                (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/insulae/" title="insulae">insulae (6)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/jet-deau/" title="jet d'eau">jet d'eau (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/lararia/" title="lararia">lararia (19)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/lattices/" title="lattices">lattices (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/laurel/" title="laurel">laurel (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/lecti/" title="lecti">lecti (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/loggias/" title="loggias">loggias (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/lucus-grove/" title="lucus (grove)">lucus (grove)
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/market-gardens/" title="market gardens">market
+                gardens
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/masonry/" title="masonry">masonry (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/mosaics-visual-works/"
+                title="mosaics (visual works)">mosaics (visual works) (19)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/mural-paintings-visual-works/"
+                title="mural paintings (visual works)">mural paintings (visual works) (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/myrtle-myrtus-communis/"
+                title="myrtle (Myrtus communis)">myrtle (Myrtus communis) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/naoi-chambers/" title="naoi (chambers)">naoi
+                (chambers)
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/nemus-grove/" title="nemus (grove)">nemus (grove)
+                (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/niches/" title="niches">niches (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/nymphaea-garden-structures/"
+                title="nymphaea (garden structures)">nymphaea (garden structures) (9)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/obelisk/" title="obelisk">obelisk (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/oeci/" title="oeci">oeci (13)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/olive-trees-olea-europaea/"
+                title="olive trees (Olea europaea)">olive trees (Olea europaea) (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/opus-signinum/" title="opus signinum">opus signinum
+                (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/orchards/" title="orchards">orchards (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/palaces/" title="palaces">palaces (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/palaestrae/" title="palaestrae">palaestrae (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/paradise-gardens/"
+                title="paradise gardens">paradise
+                gardens (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/parapets/" title="parapets">parapets (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pausanias/" title="Pausanias">Pausanias (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/peltae/" title="peltae">peltae (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pergolas/" title="pergolas">pergolas (10)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/peristyle-houses/"
+                title="peristyle houses">peristyle
+                houses (32)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/peristyles-roman-courtyards/"
+                title="peristyles (Roman courtyards)">peristyles (Roman courtyards) (44)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pilasters/" title="pilasters">pilasters (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pillars/" title="pillars">pillars (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pinakes/" title="pinakes">pinakes (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pines-pinus/" title="pines (Pinus)">pines (Pinus)
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pipes-conduits/" title="pipes (conduits)">pipes
+                (conduits) (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/piscinae/" title="piscinae">piscinae (9)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pits-earthworks/" title="pits (earthworks)">pits
+                (earthworks) (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/plane-trees-platanus-orientalis/"
+                title="plane trees (Platanus orientalis)">plane trees (Platanus orientalis) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/planters-containers/"
+                title="planters (containers)">planters (containers) (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/planting-bed/" title="planting bed">planting bed
+                (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/planting-pots/" title="planting pots">planting pots
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pleasure-garden/" title="pleasure garden">pleasure
+                garden
+                (14)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/podium/" title="podium">podium (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pollen/" title="pollen">pollen (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pomegranate-punica-granatum/"
+                title="pomegranate (Punica granatum)">pomegranate (Punica granatum) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pomerium/" title="pomerium">pomerium (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/pools-bodies-of-water/"
+                title="pools (bodies of water)">pools (bodies of water) (9)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/poplars-populus/" title="poplars (Populus)">poplars
+                (Populus) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/porticoes/" title="porticoes">porticoes (73)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/puteals/" title="puteals">puteals (6)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/reflecting-pools/"
+                title="reflecting pools">reflecting
+                pools (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/reservoirs/" title="reservoirs">reservoirs (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/rim/" title="rim">rim (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/root-cavities/" title="root cavities">root cavities
+                (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/rustic/" title="rustic">rustic (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/sacella/" title="sacella">sacella (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/sacrarium/" title="sacrarium">sacrarium (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/sacred-groves/" title="sacred groves">sacred groves
+                (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/sanctuaries-religious-building-spaces/"
+                title="sanctuaries (religious building spaces)">sanctuaries (religious building spaces) (8)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/sculpture/" title="sculpture">sculpture (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/semicircular-basin/"
+                title="semicircular basin">semicircular basin (13)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/shrines-structures/"
+                title="shrines (structures)">shrines
+                (structures) (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/stagnum-man-made-lake/"
+                title="stagnum (man-made lake)">stagnum (man-made lake) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/stairs/" title="stairs">stairs (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/statues/" title="statues">statues (7)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/statuettes/" title="statuettes">statuettes (6)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/strabo/" title="Strabo">Strabo (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/strigillation/" title="strigillation">strigillation
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/stucco/" title="stucco">stucco (5)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/sundial/" title="sundial">sundial (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tabernae/" title="tabernae">tabernae (3)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tables-support-furniture/"
+                title="tables (support furniture)">tables (support furniture) (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tablina/" title="tablina">tablina (21)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/temene/" title="temene">temene (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/temples-buildings/"
+                title="temples (buildings)">temples
+                (buildings) (12)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/terrace-gardens/" title="terrace gardens">terrace
+                gardens
+                (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tesserae/" title="tesserae">tesserae (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/theater/" title="theater">theater (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/thermae/" title="thermae">thermae (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/thermopolium/" title="thermopolium">thermopolium
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/thymiaterion/" title="thymiaterion">thymiaterion
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tombs/" title="tombs">tombs (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tondi/" title="tondi">tondi (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/trellises/" title="trellises">trellises (4)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/triclinia-couches/"
+                title="triclinia (couches)">triclinia
+                (couches) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/triclinia-rooms/"
+                title="triclinia (rooms)">triclinia
+                (rooms) (42)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/triplex-porticus/" title="triplex porticus">triplex
+                porticus (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/triumphal-arch/" title="triumphal arch">triumphal
+                arch
+                (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/tufa/" title="tufa">tufa (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/ustrins-crematories/"
+                title="ustrins (crematories)">ustrins (crematories) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/vases/" title="vases">vases (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/vaults/" title="vaults">vaults (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/vegetable-gardens/"
+                title="vegetable gardens">vegetable
+                gardens (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/venus/" title="venus">venus (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/vestibules/" title="vestibules">vestibules (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/vineyards/" title="vineyards">vineyards (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/viridarium/" title="viridarium">viridarium (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/walled-garden/" title="walled garden">walled garden
+                (14)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/water-features-landscaping/"
+                title="water features (landscaping)">water features (landscaping) (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/water-supply-systems/"
+                title="water supply systems">water
+                supply systems (6)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/water-wells/" title="water wells">water wells
+                (2)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/wild-olives-olea-oleaster/"
+                title="wild olives (Olea oleaster)">wild olives (Olea oleaster) (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/woven/" title="woven">woven (1)</a>
+            <a class="widget-taglist__link widget__link" href="/tags/xystis/" title="xystis">xystis (1)</a>
+        </div>
+    </div>
+</aside>

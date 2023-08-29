@@ -3,13 +3,23 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "crypto": [
+        "node_modules/crypto-browserify"
+      ],
+      "stream": [
+        "node_modules/stream-browserify"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "resolveJsonModule": true,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -27,6 +37,9 @@
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
+    "types": [
+      "node"
+    ],
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   }

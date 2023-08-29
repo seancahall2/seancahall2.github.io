@@ -39,10 +39,16 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "docs",
+            "allowedCommonJsDependencies": [
+              "box-typescript-sdk-gen/lib/client.generated.js"
+            ],
+            "outputPath": "../docs",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts",
+              "src/window-global-fix.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -120,11 +126,12 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "box-typescript-sdk-gen/lib/client.generated.js"
+            ]
           }
         }
       }
     }
-  },
-  "defaultProject": "villa-arianna"
+  }
 }

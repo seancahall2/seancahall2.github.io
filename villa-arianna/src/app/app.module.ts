@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TextSearchComponent } from './text-search/text-search.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TextSearchComponent
+    TextSearchComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

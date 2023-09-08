@@ -1,0 +1,52 @@
+{
+    "tagDataDad": [
+        {
+            "tag": "Oecus",
+            "count": "3"
+        },
+        {
+            "tag": "Second Style",
+            "count": "1"
+        },
+        {
+            "tag": "Fourth Style",
+            "count": "3"
+        },
+        {
+            "tag": "podium",
+            "count": "2"
+        },
+        {
+            "tag": "column",
+            "count": "5"
+        },
+        {
+            "tag": "Opus incertum",
+            "count": "6"
+        },
+        {
+            "tag": "Opus reticulatum",
+            "count": "3"
+        },
+        {
+            "tag": "Opus quasireticulatum",
+            "count": "1"
+        },
+        {
+            "tag": "Opus testaceum",
+            "count": "0"
+        },
+        {
+            "tag": "Opus mixtum vittatum",
+            "count": "0"
+        },
+        {
+            "tag": "First Style",
+            "count": "1"
+        },
+        {
+            "tag": "Third Style",
+            "count": "2"
+        }
+    ]
+}

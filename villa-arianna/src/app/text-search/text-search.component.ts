@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges, OnChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'text-search',
@@ -11,12 +12,49 @@ import { ApiService } from 'src/app/api.service';
 export class TextSearchComponent {
   data: any;
   message: any;
+  tag: any;
 
-  constructor(private http: HttpClient, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService) { }
 
   ngOnInit() {
-    // this.doSearch();
-    // this.newMethod();
+    const value = this.route.snapshot.paramMap.get('searchTerm');
+    const tag = this.route.snapshot.paramMap.get('tag');
+    if (value && value.length > 0) {
+      this.tag = value;
+      this.doSearch(value);
+    }
+    if (tag && tag.length > 0) {
+      this.tag = tag;
+      this.searchByTag(this.tag);
+    }
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('on changes here ');
+    console.log(changes);
+    if (changes['tag'] && changes['tag'].currentValue) {
+      this.searchByTag(this.tag);
+    }
+  }
+
+  async searchByTag(tag: any) {
+    try {
+      this.data = await lastValueFrom(this.apiService.searchByTag(tag));
+      console.log('here', this.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  doJSON() {
+    this.apiService.doJSON().subscribe(data => {
+      this.data = data;
+    });
+  }
+
+  getRoomDetail(id: string) {
+    console.log('room detail id: ' + id);
   }
 
   callExpress() {
@@ -37,27 +75,10 @@ export class TextSearchComponent {
     });
   }
 
-  doSearch() {
-    this.apiService.doSearch('chlamys').subscribe(items => {
+  doSearch(term: string) {
+    this.apiService.doSearch(term).subscribe(items => {
       this.data = items;
     });
-  }
-
-  async getData() {
-    const url = `https://api.thecatapi.com/v1/breeds`;
-    const api_key = "live_MmD2P6PoLQdaDaoY0nSTHTvlSlarHqEgIbvs2V39n233mkkg2CnZhmymbDhedg68";
-    const headers = new HttpHeaders({ "x-api-key": api_key, });
-
-    const httpOptions = {
-      headers: headers
-    };
-
-    try {
-      this.data = await lastValueFrom(this.http.get(url, httpOptions));
-      console.log('here');
-    } catch (error) {
-      console.error(error);
-    }
   }
 
 }

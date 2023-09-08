@@ -1,10 +1,37 @@
 const express = require('express');
 const app = express();
+const BoxSDK = require('box-node-sdk');
+const sdkConfig = {
+    boxAppSettings: {
+        clientID: "f61ovzp5e2hknwclrm1dnhmfmzc20qj7",
+        clientSecret: "h6mHgCmHmeCwlVCf40aHHOWnC6tqYVof"
+    },
+    enterpriseID: "1000690348",
+    box_subject_type: "enterprise",
+    box_subject_id: "1000690348",
+    grant_type: "client_credentials",
+}
+const sdk = BoxSDK.getPreconfiguredInstance(sdkConfig)
+const client = sdk.getAnonymousClient();
+
+// Initialize the SDK with your app credentials
+// var sdk = new BoxSDK({
+//     clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
+//     clientSecret: 's1wKcKFhJV9xmDnC54AbQ7athOvAXiCV'
+// });
+
+// Create a basic API client, which does not automatically refresh the access token
+// var client = sdk.getBasicClient('lxGRTJZeu1J40bkK45mBgcqBLHT7MsI3');
 
 // handling CORS
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin",
-        "http://localhost:4200");
+    // res.header("Access-Control-Allow-Origin",
+    //  "http://localhost:4200");
+    const allowedOrigins = ['http://localhost:4200', 'https://seancahall2.github.io/'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.header("Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -18,26 +45,16 @@ app.get('/api/message', (req, res) => {
     });
 });
 
-// SEARCH
+// DO SEARCH
 // route for handling requests from the Angular client
 app.get('/api/search', (req, res) => {
-    console.log('search term', JSON.stringify(req.query));
-    var BoxSDK = require('box-node-sdk');
+    console.log('search term', req.query.searchTerm);
 
-    // Initialize the SDK with your app credentials
-    var sdk = new BoxSDK({
-        clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
-        clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
-    });
-
-    // Create a basic API client, which does not automatically refresh the access token
-    var client = sdk.getBasicClient('3W9T2XqThVeTEEJfTvFEoYygVR7rL6Ub');
-
-    // Search for PDF or Word documents matching "Mobile"
+    // Search for description docs matching "searchTerm"
     client.search.query(
         req.query.searchTerm,
         {
-            fields: 'name,id',
+            fields: 'name,id,description,tags',
             // file_extensions: 'pdf,doc',
             limit: 200,
             offset: 0,
@@ -53,6 +70,27 @@ app.get('/api/search', (req, res) => {
         });
 });
 
+// route for handling requests from the Angular client
+app.get('/api/searchByTag', (req, res) => {
+    console.log('search by tag', req.query.tag);
+
+    // Search for PDF or Word documents matching the provided tag
+    client.search.query(
+        req.query.tag,
+        {
+            fields: 'name,id,description,tags',
+            query: req.query.tag,
+            limit: 200,
+            offset: 0,
+            content_types: ["tags"]
+        })
+        .then(results => {
+            console.log('Data received!');
+            res.json({
+                data: results
+            });
+        });
+});
 
 
 app.get('/api/filesByFolder', (req, res) => {
@@ -106,18 +144,60 @@ app.get('/api/auth', (req, res) => {
         client:
             client
     });
-    // Get your own user object from the Box API
-    // All client methods return a promise that resolves to the results of the API call,
-    // or rejects when an error occurs
-    // client.users.get(client.CURRENT_USER_ID)
-    //     .then(user => {
-    //         console.log('Hello', user.name, '!');
-    //         res.json({
-    //             message:
-    //                 'Hola ' + user.name + '!'
-    //         });
-    //     })
-    //     .catch(err => console.log('Got an error!', err));
+});
+
+app.get('/api/dojson', (req, res) => {
+    const fs = require('fs');
+
+    let rawdata = fs.readFileSync('./assets/data/tags.json');
+    let tagData = JSON.parse(rawdata);
+    console.log(tagData);
+    res.json({
+        message:
+            'Success!'
+    });
+});
+
+app.get('/api/writeJson', (req, res) => {
+    const fs = require('fs');
+
+    let rawdata = require('./app/tag-array.json');
+    // let tagData = JSON.parse(rawdata);
+    let tagObject = { tag: req.query.tag, count: req.query.count };
+    rawdata.tagDataDad.push(tagObject);
+
+    let data = JSON.stringify(rawdata);
+    console.log('data', data);
+    fs.writeFileSync('./app/tag-array.json', data);
+    console.log('Data written to file');
+
+    res.json({
+        message:
+            'Success!',
+        data: rawdata
+    });
+});
+
+app.get('/api/getFileInfo', (req, res) => {
+    var BoxSDK = require('box-node-sdk');
+    console.log('id in node: ' + req.query.id);
+    // Initialize the SDK with your app credentials
+    var sdk = new BoxSDK({
+        clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
+        clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
+    });
+
+    // Create a basic API client, which does not automatically refresh the access token
+    var client = sdk.getBasicClient('JRexxo9ozfNR6YCRVeYLpGrWjw5cyUYI');
+
+    client.files.get('1017868008921')
+        .then(file => {
+            console.log('File info received!');
+            res.json({
+                data: file
+            });
+        });
+
 });
 
 app.listen(3000, () => {

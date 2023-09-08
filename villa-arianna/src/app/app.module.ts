@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TextSearchComponent } from './text-search/text-search.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { CitationComponent } from './citation/citation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TextSearchComponent,
-    SideBarComponent
+    SideBarComponent,
+    HomeComponent,
+    AboutComponent,
+    CitationComponent
   ],
   imports: [
     BrowserModule,

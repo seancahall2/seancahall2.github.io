@@ -8,9 +8,10 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
     getMessage() {
+
         return this.http.get(
             // 'http://localhost:3000/api/message'
-            'http://129.146.82.190:3000/api/message'
+            'https://va-nodejs-api.up.railway.app/api/message'
         );
     }
 
@@ -42,7 +43,7 @@ export class ApiService {
 
     doSearch(searchTerm: string) {
         const localUrl = 'http://localhost:3000/api/search';
-        const url = 'http://129.146.82.190:3000/api/search';
+        const url = 'https://va-nodejs-api.up.railway.app/api/search';
         return this.http.get(url, {
             params: { searchTerm: searchTerm },
         }
@@ -51,7 +52,7 @@ export class ApiService {
 
     searchByTag(tag: string) {
         const localUrl = 'http://localhost:3000/api/searchByTag';
-        const url = 'http://129.146.82.190:3000/api/searchByTag';
+        const url = 'https://va-nodejs-api.up.railway.app/api/searchByTag';
         return this.http.get(url, {
             params: { tag: tag },
         }

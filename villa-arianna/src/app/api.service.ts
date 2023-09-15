@@ -62,7 +62,7 @@ export class ApiService {
 
     getFileInfo(id: string) {
         console.log('id: ' + id);
-        return this.http.get('http://localhost:3000/api/getFileInfo', {
+        return this.http.get('https://va-nodejs-api.up.railway.app/api/getFileInfo', {
             params: { id: id },
         }
         );

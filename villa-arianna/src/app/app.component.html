@@ -21,9 +21,9 @@
   <aside class="sidebar sidebar--left">
     <div class="widget-search widget">
       <h4 class="widget__title">Search</h4>
-      <form class="widget-search__form" role="search" method="get">
-        <label><input class="widget-search__field" (keydown.enter)="setSearchTerm($event)" type="search"
-            placeholder="search..." name="q" id="search-input" aria-label="search..."></label>
+      <form #f="ngForm" class="widget-search__form" role="search" (ngSubmit)="setSearchTerm(f)">
+        <label><input class="widget-search__field" type="search" placeholder="search..." name="q" ngModel #q="ngModel"
+            id="search-input" aria-label="search..."></label>
         <input class="widget-search__submit" type="submit" value="Search">
       </form>
     </div>
@@ -106,20 +106,15 @@
     <div class="widget-taglist widget">
       <h4 class="widget__title">Keywords</h4>
       <div class="widget__content">
-        <div *ngFor="let tag of entryList">
-          <span class="tag-category">{{ tag[0] }}</span>
-          <p>
-            <span *ngFor="let entry of tag[1]">
-              <a class="widget-taglist__link widget__link" role="button" (click)="setTag({ entry })"
-                title="{{ entry }}">{{ entry }}</a>
-            </span>
-          </p>
-        </div>
+        <span *ngFor="let entry of entryList">
+          <a class="widget-taglist__link widget__link" role="button" (click)="setTag({ entry })"
+            title="{{ entry.tag }}">{{
+            entry.tag }} <span>({{ entry.count }})</span></a>
+        </span>
       </div>
     </div>
   </aside>
   <router-outlet></router-outlet>
-  <!-- <text-search [tag]=tag></text-search> -->
 </div>
 <footer class="footer">
   <div class="container footer__container flex">

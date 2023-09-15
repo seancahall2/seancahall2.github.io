@@ -1,52 +1,388 @@
 {
     "tagDataDad": [
         {
-            "tag": "Oecus",
-            "count": "3"
+            "tag": "Acroteria",
+            "count": "2"
         },
         {
-            "tag": "Second Style",
+            "tag": "Aedicula",
+            "count": "4"
+        },
+        {
+            "tag": "Alabaster",
+            "count": "0"
+        },
+        {
+            "tag": "Amorino",
+            "count": "0"
+        },
+        {
+            "tag": "Antechamber",
             "count": "1"
         },
         {
-            "tag": "Fourth Style",
+            "tag": "Arch",
+            "count": "2"
+        },
+        {
+            "tag": "Architrave",
+            "count": "4"
+        },
+        {
+            "tag": "Ariadne",
+            "count": "1"
+        },
+        {
+            "tag": "Atrium",
+            "count": "0"
+        },
+        {
+            "tag": "Bases",
+            "count": "0"
+        },
+        {
+            "tag": "Bird",
+            "count": "0"
+        },
+        {
+            "tag": "Boss",
             "count": "3"
         },
         {
-            "tag": "podium",
+            "tag": "Cameo",
+            "count": "3"
+        },
+        {
+            "tag": "Candelabrum",
+            "count": "4"
+        },
+        {
+            "tag": "Capitals",
+            "count": "0"
+        },
+        {
+            "tag": "Carpet Style",
+            "count": "0"
+        },
+        {
+            "tag": "Coffered ceiling",
             "count": "2"
+        },
+        {
+            "tag": "Colonnade",
+            "count": "3"
         },
         {
             "tag": "column",
             "count": "5"
         },
         {
-            "tag": "Opus incertum",
-            "count": "6"
-        },
-        {
-            "tag": "Opus reticulatum",
-            "count": "3"
-        },
-        {
-            "tag": "Opus quasireticulatum",
+            "tag": "Cornice",
             "count": "1"
         },
         {
-            "tag": "Opus testaceum",
+            "tag": "Corona",
+            "count": "1"
+        },
+        {
+            "tag": "Corridor",
+            "count": "1"
+        },
+        {
+            "tag": "Cubiculum",
+            "count": "2"
+        },
+        {
+            "tag": "Cupid",
             "count": "0"
         },
         {
-            "tag": "Opus mixtum vittatum",
+            "tag": "Daimon",
+            "count": "1"
+        },
+        {
+            "tag": "Diaeta",
+            "count": "1"
+        },
+        {
+            "tag": "Dionysus",
+            "count": "1"
+        },
+        {
+            "tag": "Dolphin",
+            "count": "1"
+        },
+        {
+            "tag": "Dürchblicke",
+            "count": "3"
+        },
+        {
+            "tag": "Entablature",
+            "count": "3"
+        },
+        {
+            "tag": "Fasciae",
             "count": "0"
+        },
+        {
+            "tag": "Fauces",
+            "count": "0"
+        },
+        {
+            "tag": "Finial",
+            "count": "1"
         },
         {
             "tag": "First Style",
             "count": "1"
         },
         {
+            "tag": "Foliage",
+            "count": "3"
+        },
+        {
+            "tag": "Fourth Style",
+            "count": "3"
+        },
+        {
+            "tag": "Frieze",
+            "count": "0"
+        },
+        {
+            "tag": "Ganymede",
+            "count": "1"
+        },
+        {
+            "tag": "Garland",
+            "count": "3"
+        },
+        {
+            "tag": "Giallo antico",
+            "count": "0"
+        },
+        {
+            "tag": "Gorgon Mask",
+            "count": "0"
+        },
+        {
+            "tag": "Graffiti",
+            "count": "1"
+        },
+        {
+            "tag": "Grapevine",
+            "count": "0"
+        },
+        {
+            "tag": "Gryphon",
+            "count": "0"
+        },
+        {
+            "tag": "Hippocampus",
+            "count": "0"
+        },
+        {
+            "tag": "Human Female",
+            "count": "0"
+        },
+        {
+            "tag": "Human Male",
+            "count": "0"
+        },
+        {
+            "tag": "Ivy",
+            "count": "1"
+        },
+        {
+            "tag": "Jupiter",
+            "count": "1"
+        },
+        {
+            "tag": "Lotus",
+            "count": "1"
+        },
+        {
+            "tag": "Lyre",
+            "count": "1"
+        },
+        {
+            "tag": "Metope",
+            "count": "1"
+        },
+        {
+            "tag": "Mirror",
+            "count": "1"
+        },
+        {
+            "tag": "Molding",
+            "count": "1"
+        },
+        {
+            "tag": "Mythological Narrative",
+            "count": "1"
+        },
+        {
+            "tag": "Oceanus",
+            "count": "0"
+        },
+        {
+            "tag": "Oecus",
+            "count": "3"
+        },
+        {
+            "tag": "Opus incertum",
+            "count": "6"
+        },
+        {
+            "tag": "Opus mixtum vittatum",
+            "count": "0"
+        },
+        {
+            "tag": "Opus quasireticulatum",
+            "count": "1"
+        },
+        {
+            "tag": "Opus reticulatum",
+            "count": "3"
+        },
+        {
+            "tag": "Opus testaceum",
+            "count": "0"
+        },
+        {
+            "tag": "Orthostate",
+            "count": "0"
+        },
+        {
+            "tag": "Oscillum",
+            "count": "2"
+        },
+        {
+            "tag": "Palmette",
+            "count": "1"
+        },
+        {
+            "tag": "Panther",
+            "count": "0"
+        },
+        {
+            "tag": "Parapet",
+            "count": "1"
+        },
+        {
+            "tag": "pedestal",
+            "count": "3"
+        },
+        {
+            "tag": "Peristyle",
+            "count": "0"
+        },
+        {
+            "tag": "Pier",
+            "count": "2"
+        },
+        {
+            "tag": "Pilaster",
+            "count": "0"
+        },
+        {
+            "tag": "Pillar",
+            "count": "1"
+        },
+        {
+            "tag": "Pinax",
+            "count": "2"
+        },
+        {
+            "tag": "Plinth",
+            "count": "2"
+        },
+        {
+            "tag": "podium",
+            "count": "2"
+        },
+        {
+            "tag": "Porphyry",
+            "count": "0"
+        },
+        {
+            "tag": "Portico",
+            "count": "0"
+        },
+        {
+            "tag": "processional canopy",
+            "count": "1"
+        },
+        {
+            "tag": "Sacro-idyllic",
+            "count": "0"
+        },
+        {
+            "tag": "Sea Lion",
+            "count": "0"
+        },
+        {
+            "tag": "Second Style",
+            "count": "1"
+        },
+        {
+            "tag": "Serpentine",
+            "count": "0"
+        },
+        {
+            "tag": "Shrine",
+            "count": "1"
+        },
+        {
+            "tag": "Swan",
+            "count": "0"
+        },
+        {
+            "tag": "Tablinum",
+            "count": "0"
+        },
+        {
+            "tag": "Tabula",
+            "count": "1"
+        },
+        {
+            "tag": "Tapestry",
+            "count": "4"
+        },
+        {
             "tag": "Third Style",
             "count": "2"
+        },
+        {
+            "tag": "Thyrsus",
+            "count": "0"
+        },
+        {
+            "tag": "Tondo",
+            "count": "2"
+        },
+        {
+            "tag": "Tragic Mask",
+            "count": "1"
+        },
+        {
+            "tag": "Triclinium",
+            "count": "1"
+        },
+        {
+            "tag": "Vessel",
+            "count": "3"
+        },
+        {
+            "tag": "Vignette",
+            "count": "0"
+        },
+        {
+            "tag": "Winged Eros",
+            "count": "2"
+        },
+        {
+            "tag": "winged figure",
+            "count": "1"
         }
     ]
 }

@@ -31,7 +31,7 @@ const client = sdk.getAnonymousClient();
 app.use((req, res, next) => {
     // res.header("Access-Control-Allow-Origin",
     //  "http://localhost:4200");
-    const allowedOrigins = ['http://localhost:4200', 'https://seancahall2.github.io/'];
+    const allowedOrigins = ['http://localhost:4200', 'https://seancahall2.github.io'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
@@ -183,16 +183,16 @@ app.get('/api/writeJson', (req, res) => {
 });
 
 app.get('/api/getFileInfo', (req, res) => {
-    var BoxSDK = require('box-node-sdk');
+    //    var BoxSDK = require('box-node-sdk');
     console.log('id in node: ' + req.query.id);
     // Initialize the SDK with your app credentials
-    var sdk = new BoxSDK({
-        clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
-        clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
-    });
+    // var sdk = new BoxSDK({
+    //     clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
+    //     clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
+    // });
 
-    // Create a basic API client, which does not automatically refresh the access token
-    var client = sdk.getBasicClient('JRexxo9ozfNR6YCRVeYLpGrWjw5cyUYI');
+    // // Create a basic API client, which does not automatically refresh the access token
+    // var client = sdk.getBasicClient('JRexxo9ozfNR6YCRVeYLpGrWjw5cyUYI');
 
     client.files.get('1017868008921')
         .then(file => {

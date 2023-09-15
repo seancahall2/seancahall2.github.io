@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { json } from 'express';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +16,16 @@ export class AppComponent implements OnInit {
   entryList: any;
   fileData: any;
   searchTerm: any;
+  tempArray: any;
+  tempTag: any;
   message: any;
+  q: any;
 
   constructor(private apiService: ApiService, private route: Router) { }
 
   ngOnInit() {
     this.getTags();
     this.callExpress();
-    //  this.getFileInfo(1017868008921);
   }
 
   callExpress() {
@@ -31,30 +35,40 @@ export class AppComponent implements OnInit {
   }
 
   private getTags() {
-    fetch('./assets/data/tags.json').then(res => res.json())
+    fetch('./assets/data/tags-alpha.json').then(res => res.json())
       .then(jsonData => {
         if (jsonData) {
-          this.entryList = Object.entries(jsonData);
+          this.entryList = jsonData;
+          // const sorted = this.entryList.sort();
+          // this.tempArray = JSON.parse(JSON.stringify(this.entryList));
+          // console.log('sorted: ' + JSON.stringify(this.entryList));
+          // this.getFileInfo();
         }
       });
   }
 
   setTag(obj: any) {
-    this.tag = obj.entry;
-    this.route.navigate(['tag-search', obj.entry]);
+    this.route.navigate(['/tag-search'], { queryParams: { tag: obj.entry.tag } });
   }
 
-  setSearchTerm(obj: any) {
-    console.log(JSON.stringify(obj.target.value));
-    // const state = { obj.target.value };
-    this.route.navigate(['free-text-search', obj.target.value]);
+  setSearchTerm(form: NgForm) {
+    let myterm = JSON.parse(JSON.stringify(form.form.value));
+    form.reset();
+    this.q = myterm.q;
+    this.route.navigate(['free-text-search'], { queryParams: { searchTerm: this.q } });
   }
 
-  getFileInfo(obj: any) {
-    this.apiService.getFileInfo(obj.entry).subscribe(items => {
-      console.log(JSON.stringify(items));
-      this.fileData = items;
-      // this.writeJson(obj.entry, this.data.data.total_count);
+  getFileInfo() {
+    let obj = this.tempArray.shift();
+    this.tempTag = obj;
+    this.apiService.searchByTag(obj).subscribe(items => {
+      console.log('tag data: ', JSON.stringify(items));
+      this.fileData = JSON.parse(JSON.stringify(items))
+      // this.fileData = items;
+      this.writeJson(this.tempTag, this.fileData.data.total_count);
+      if (this.tempArray.length > 0) {
+        this.getFileInfo();
+      }
     });
   }
 
@@ -64,6 +78,5 @@ export class AppComponent implements OnInit {
       console.log(JSON.stringify(data));
     });
   }
-
 
 }

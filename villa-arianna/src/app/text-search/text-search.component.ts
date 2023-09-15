@@ -1,4 +1,4 @@
-import { Component, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
@@ -17,31 +17,27 @@ export class TextSearchComponent {
   constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService) { }
 
   ngOnInit() {
-    const value = this.route.snapshot.paramMap.get('searchTerm');
-    const tag = this.route.snapshot.paramMap.get('tag');
-    if (value && value.length > 0) {
-      this.tag = value;
-      this.doSearch(value);
-    }
-    if (tag && tag.length > 0) {
-      this.tag = tag;
-      this.searchByTag(this.tag);
-    }
 
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('on changes here ');
-    console.log(changes);
-    if (changes['tag'] && changes['tag'].currentValue) {
-      this.searchByTag(this.tag);
-    }
+    this.route.queryParams.subscribe(params => {
+      console.log('params: ', params);
+      if (params['tag']) {
+        this.searchByTag(params['tag']);
+      }
+      if (params['searchTerm']) {
+        this.doSearch(params['searchTerm']);
+      }
+      if (params['q']) {
+        this.doSearch(params['q']);
+      }
+    });
+    console.log('on init here ');
   }
 
   async searchByTag(tag: any) {
     try {
       this.data = await lastValueFrom(this.apiService.searchByTag(tag));
       console.log('here', this.data.data);
+      this.tag = tag;
     } catch (error) {
       console.error(error);
     }
@@ -78,6 +74,7 @@ export class TextSearchComponent {
   doSearch(term: string) {
     this.apiService.doSearch(term).subscribe(items => {
       this.data = items;
+      this.tag = term;
     });
   }
 

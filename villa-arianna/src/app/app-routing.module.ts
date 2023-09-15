@@ -19,12 +19,14 @@ const routes: Routes = [];
       path: 'citation', component: CitationComponent
     },
     {
-      path: 'tag-search/:tag', component: TextSearchComponent
+      path: 'tag-search', component: TextSearchComponent
     },
     {
-      path: 'free-text-search/:searchTerm', component: TextSearchComponent
+      path: 'free-text-search', component: TextSearchComponent
     },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to `home`
+    {
+      path: '', redirectTo: '/home', pathMatch: 'full'
+    },
   ])],
   exports: [RouterModule]
 })

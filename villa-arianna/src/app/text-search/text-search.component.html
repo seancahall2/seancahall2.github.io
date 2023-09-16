@@ -4,15 +4,31 @@
             <header class="main__header">
                 <h1 class="main__title">{{ tag }}</h1>
             </header>
-            <div *ngFor="let file of data.data.entries">
+            <div *ngIf="data.data.entries.length > 0">
+
+                <div *ngFor="let file of data.data.entries">
+                    <article class="list__item post">
+                        <header class="list__header">
+                            <h2 class="list__title post__title"><a role="button" (click)="getRoomDetail(file)">{{
+                                    file.name
+                                    }}</a></h2>
+                        </header>
+                        <div class="content list__excerpt post__content clearfix"><a
+                                style="color: darkslategrey; cursor: pointer;" role="button"
+                                (click)="getRoomDetail(file)">{{ file.description }}...</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div *ngIf="data.data.entries.length == 0">
                 <article class="list__item post">
                     <header class="list__header">
-                        <h2 class="list__title post__title"><a role="button" (click)="getRoomDetail(file)">{{ file.name
-                                }}</a></h2>
+                        <h2 class="list__title post__title">No results found!</h2>
                     </header>
-                    <div class="content list__excerpt post__content clearfix"><a
-                            style="color: darkslategrey; cursor: pointer;" role="button"
-                            (click)="getRoomDetail(file)">{{ file.description }}...</a>
+                    <div class="content list__excerpt post__content clearfix"
+                        style="text-align: center;padding-top: 50px;">
+                        <img src="../../assets/images/Arianna-naxos.jpg" alt="on the rocks"
+                            style="width: 50%; height: auto;">
                     </div>
                 </article>
             </div>

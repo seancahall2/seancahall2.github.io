@@ -27,82 +27,13 @@
         <input class="widget-search__submit" type="submit" value="Search">
       </form>
     </div>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-      crossorigin="">
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-      crossorigin=""></script>
-    <script src="https://roman-gardens.github.io/js/leaflet-tilelayer-colorfilter.min.js"></script>
-    <script src="https://roman-gardens.github.io/js/leaflet.fullscreen.min.js"></script>
-    <script src="https://roman-gardens.github.io/js/L.Control.Basemaps-min.js"></script>
-    <link href="https://roman-gardens.github.io/css/leaflet.fullscreen.css" rel="stylesheet">
-    <link href="https://roman-gardens.github.io/css/L.Control.Basemaps.css" rel="stylesheet">
+
     <div class="widget-taglist widget">
       <h4 class="widget__title">Map</h4>
-      <div class="widget__content">
-        <div id="map"
-          class="leaflet-map leaflet-container leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag"
-          tabindex="0" style="position: relative;">
-          <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
-            <div class="leaflet-pane leaflet-tile-pane">
-              <div class="leaflet-layer "
-                style="z-index: 1; filter: brightness(100%) contrast(100%) saturate(30%) opacity(100%) sepia(10%);">
-              </div>
-              <div class="leaflet-layer "
-                style="z-index: 1; filter: brightness(100%) contrast(100%) saturate(30%) opacity(100%) sepia(10%);">
-              </div>
-              <div class="leaflet-layer "
-                style="z-index: 1; filter: brightness(100%) contrast(100%) saturate(30%) opacity(100%) sepia(10%); opacity: 1;">
-                <div class="leaflet-tile-container leaflet-zoom-animated"
-                  style="z-index: 17; transform: translate3d(95px, 150px, 0px) scale(0.25);"></div>
-                <div class="leaflet-tile-container leaflet-zoom-animated"
-                  style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" role="presentation"
-                    src="https://a.tile.openstreetmap.org/17/67624/51326.png" class="leaflet-tile leaflet-tile-loaded"
-                    style="width: 256px; height: 256px; transform: translate3d(-43px, -16px, 0px); opacity: 1;"><img
-                    alt="" role="presentation" src="https://b.tile.openstreetmap.org/17/67625/51326.png"
-                    class="leaflet-tile leaflet-tile-loaded"
-                    style="width: 256px; height: 256px; transform: translate3d(213px, -16px, 0px); opacity: 1;"><img
-                    alt="" role="presentation" src="https://b.tile.openstreetmap.org/17/67624/51327.png"
-                    class="leaflet-tile leaflet-tile-loaded"
-                    style="width: 256px; height: 256px; transform: translate3d(-43px, 240px, 0px); opacity: 1;"><img
-                    alt="" role="presentation" src="https://c.tile.openstreetmap.org/17/67625/51327.png"
-                    class="leaflet-tile leaflet-tile-loaded"
-                    style="width: 256px; height: 256px; transform: translate3d(213px, 240px, 0px); opacity: 1;"></div> 
-              </div>
-            </div>
-    <div class="leaflet-pane leaflet-shadow-pane"></div>
-    <div class="leaflet-pane leaflet-overlay-pane"></div>
-    <div class="leaflet-pane leaflet-marker-pane">
-      <div class="leaflet-marker-icon dot leaflet-zoom-animated leaflet-interactive" tabindex="0"
-        style="margin-left: -6px; margin-top: -6px; width: 12px; height: 12px; transform: translate3d(127px, 199px, 0px); z-index: 199;">
+      <div class="widget__content" id="map">
+        <app-map></app-map>
       </div>
     </div>
-    <div class="leaflet-pane leaflet-tooltip-pane"></div>
-    <div class="leaflet-pane leaflet-popup-pane"></div>
-    <div class="leaflet-proxy leaflet-zoom-animated"
-      style="transform: translate3d(1.73119e+07px, 1.31397e+07px, 0px) scale(65536);"></div>
-</div>
-<div class="leaflet-control-container">
-  <div class="leaflet-top leaflet-left">
-    <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#"
-        title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#"
-        title="Zoom out" role="button" aria-label="Zoom out">−</a></div>
-    <div class="leaflet-control-fullscreen leaflet-bar leaflet-control"><a
-        class="leaflet-control-fullscreen-button leaflet-bar-part" href="#" title="View Fullscreen"></a></div>
-  </div>
-  <div class="leaflet-top leaflet-right"></div>
-  <div class="leaflet-bottom leaflet-left"></div>
-  <div class="leaflet-bottom leaflet-right">
-    <div class="leaflet-control-attribution leaflet-control">Basemap | <a
-        href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="https://dh.gu.se/dare/">DARE</a>
-    </div>
-  </div>
-</div>
-</div>
-<script>map = L.map("map", { attributionControl: !0, fullscreenControl: !0 }).setView([40, 17], 3), map.attributionControl.setPrefix("Basemap"); var osm_lo = L.tileLayer.colorFilter("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { label: "OpenStreetMap", minZoom: 0, maxZoom: 3, attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', filter: ["brightness: 100%", "contrast: 100%", "saturation: 30%", "opacity: 100%", "sepia: 10%"] }), dare, osm_hi, div_circle; osm_lo.addTo(map), dare = L.tileLayer.colorFilter("https://dh.gu.se/tiles/imperium/{z}/{x}/{y}.png", { label: "Digital Atlas of the Roman Empire (zoom 4-11 only)", minZoom: 4, maxZoom: 11, attribution: '<a href="https://dh.gu.se/dare/">DARE</a>', errorTileUrl: "https://dh.gu.se/tiles/imperium/4/8/5.png", filter: ["brightness: 100%", "contrast: 100%", "saturation: 30%", "opacity: 100%", "sepia: 10%"] }), dare.addTo(map), osm_hi = L.tileLayer.colorFilter("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { label: "OpenStreetMap", minZoom: 12, maxZoom: 19, attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', filter: ["brightness: 100%", "contrast: 100%", "saturation: 30%", "opacity: 100%", "sepia: 10%"] }), osm_hi.addTo(map), markers = [], bounds = L.latLngBounds(), div_circle = L.divIcon({ className: "dot" }), marker = L.marker([36.31769, 5.736683], { icon: div_circle }), marker.bindPopup("<a href='https://roman-gardens.github.io/province/numidia/cuicul/house_of_castorius/'>House of Castorius, Central District (Maison du Castorius, Quartier central)</a>"), marker.addTo(map), markers.push(marker), bounds.extend(marker.getLatLng()), bounds.isValid() && (map.fitBounds(bounds.pad(.05)), map.getZoom() > 17 && map.setZoom(17))</script>
-</div>
-</div> -->
     <div class="widget-taglist widget">
       <h4 class="widget__title">Keywords</h4>
       <div class="widget__content">

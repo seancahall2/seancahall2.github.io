@@ -58,7 +58,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/tiff.min.js"
+            ]
           },
           "configurations": {
             "production": {

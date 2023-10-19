@@ -7,6 +7,15 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
     constructor(private http: HttpClient) { }
 
+    removeTag(tag: any, fileId: any) {
+        console.log("api call to remove tag: ", tag, fileId);
+        return this.http.get('http://localhost:3000/api/removeTag',
+            {
+                params: { tag: tag, id: fileId },
+            }
+        );
+    }
+
     getMessage() {
 
         return this.http.get(
@@ -21,9 +30,13 @@ export class ApiService {
         );
     }
 
-    getFolderItems() {
+    getFolderItems(id: any) {
+        const url = 'https://va-nodejs-api.up.railway.app/api/filesByFolder';
+        const localUrl = 'http://localhost:3000/api/filesByFolder';
         return this.http.get(
-            'http://localhost:3000/api/filesByFolder'
+            url, {
+            params: { id: id },
+        }
         );
     }
 
@@ -58,7 +71,6 @@ export class ApiService {
         }
         );
     }
-
 
     getFileInfo(id: string) {
         console.log('id: ' + id);

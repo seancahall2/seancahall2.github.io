@@ -18,6 +18,21 @@ body {
     line-height: 1.4;
 }
 
+.search-result {
+    color: darkslategrey;
+    cursor: pointer;
+}
+
+.no-result {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.no-result-img {
+    width: 50%;
+    height: auto;
+}
+
 
 /* test website styles*/
 body.test {

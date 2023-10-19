@@ -2,7 +2,7 @@ import { Component, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'text-search',
@@ -14,7 +14,7 @@ export class TextSearchComponent {
   message: any;
   tag: any;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private apiService: ApiService) { }
 
   ngOnInit() {
 
@@ -30,7 +30,6 @@ export class TextSearchComponent {
         this.doSearch(params['q']);
       }
     });
-    console.log('on init here ');
   }
 
   async searchByTag(tag: any) {
@@ -49,8 +48,10 @@ export class TextSearchComponent {
     });
   }
 
-  getRoomDetail(id: string) {
-    console.log('room detail id: ' + id);
+  getRoomDetail(obj: any) {
+    if (obj.id && obj.id.length > 0) {
+      this.router.navigate(['room-detail'], { queryParams: { searchTerm: obj.id } });
+    }
   }
 
   callExpress() {
@@ -65,8 +66,8 @@ export class TextSearchComponent {
     });
   }
 
-  getFolderItems() {
-    this.apiService.getFolderItems().subscribe(items => {
+  getFolderItems(id: any) {
+    this.apiService.getFolderItems(id).subscribe(items => {
       this.data = items;
     });
   }

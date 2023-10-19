@@ -10,6 +10,7 @@ import { AboutComponent } from './about/about.component';
 import { CitationComponent } from './citation/citation.component';
 import { FormsModule } from '@angular/forms';
 import { MapComponent } from './map/map.component';
+import { RoomDetailComponent } from './room-detail/room-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { MapComponent } from './map/map.component';
     HomeComponent,
     AboutComponent,
     CitationComponent,
-    MapComponent
+    MapComponent,
+    RoomDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { json } from 'express';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,6 @@ export class AppComponent implements OnInit {
   fileData: any;
   searchTerm: any;
   tempArray: any;
-  tempTag: any;
   message: any;
   q: any;
 
@@ -25,8 +25,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getTags();
-    this.callExpress();
-
   }
 
   callExpress() {
@@ -36,14 +34,23 @@ export class AppComponent implements OnInit {
   }
 
   private getTags() {
-    fetch('./assets/data/tags-alpha.json').then(res => res.json())
+    fetch('./assets/data/tags-alpha-new.json').then(res => res.json())
       .then(jsonData => {
         if (jsonData) {
           this.entryList = jsonData;
-          // const sorted = this.entryList.sort();
-          // this.tempArray = JSON.parse(JSON.stringify(this.entryList));
-          // console.log('sorted: ' + JSON.stringify(this.entryList));
+          this.tempArray = JSON.parse(JSON.stringify(this.entryList));
           // this.getFileInfo();
+        }
+      });
+  }
+
+  getJsonTags() {
+    fetch('./assets/data/tag-array.json').then(res => res.json())
+      .then(jsonData => {
+        if (jsonData) {
+          this.entryList = jsonData;
+          this.tempArray = JSON.parse(JSON.stringify(this.entryList));
+          this.getFileInfo();
         }
       });
   }
@@ -59,24 +66,46 @@ export class AppComponent implements OnInit {
     this.route.navigate(['free-text-search'], { queryParams: { searchTerm: this.q } });
   }
 
+  async searchByTag(tag: any) {
+    try {
+      this.data = await lastValueFrom(this.apiService.searchByTag(tag));
+      console.log('tag data: ', JSON.stringify(this.data));
+      this.fileData = JSON.parse(JSON.stringify(this.data));
+      if (this.fileData.data.entries.length >= 0) {
+        this.writeJson(tag, this.fileData.data.entries.length);
+        // this.removeTag(this.fileData.data.entries);
+      }
+      this.tag = tag;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   getFileInfo() {
-    let obj = this.tempArray.shift();
-    this.tempTag = obj;
-    this.apiService.searchByTag(obj).subscribe(items => {
-      console.log('tag data: ', JSON.stringify(items));
-      this.fileData = JSON.parse(JSON.stringify(items))
-      // this.fileData = items;
-      this.writeJson(this.tempTag, this.fileData.data.total_count);
-      if (this.tempArray.length > 0) {
-        this.getFileInfo();
+    if (this.tempArray.length > 0) {
+      let obj = this.tempArray.shift();
+      this.searchByTag(obj.tag);
+    }
+  }
+
+  removeTag(fileData: any) {
+    console.log('fileData: ', fileData);
+    fileData.forEach((value: any) => {
+      console.log(value);
+      if (value.type === 'folder') {
+        this.apiService.removeTag(value.tags, value.id).subscribe((data: any) => {
+          console.log('data: ', data);
+        });
       }
     });
+
   }
 
   writeJson(tag: string, count: number) {
     this.apiService.writeJson(tag, count).subscribe(data => {
       this.data = data;
       console.log(JSON.stringify(data));
+      this.getFileInfo()
     });
   }
 

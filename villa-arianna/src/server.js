@@ -18,15 +18,6 @@ const sdkConfig = {
 const sdk = BoxSDK.getPreconfiguredInstance(sdkConfig)
 const client = sdk.getAnonymousClient();
 
-// Initialize the SDK with your app credentials
-// var sdk = new BoxSDK({
-//     clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
-//     clientSecret: 's1wKcKFhJV9xmDnC54AbQ7athOvAXiCV'
-// });
-
-// Create a basic API client, which does not automatically refresh the access token
-// var client = sdk.getBasicClient('lxGRTJZeu1J40bkK45mBgcqBLHT7MsI3');
-
 // handling CORS
 app.use((req, res, next) => {
     // res.header("Access-Control-Allow-Origin",
@@ -49,6 +40,36 @@ app.get('/api/message', (req, res) => {
     });
 });
 
+app.get('/api/removeTag', (req, res) => {
+
+    const replacerFunc = () => {
+        const visited = new WeakSet();
+        return (key, value) => {
+            if (typeof value === "object" && value !== null) {
+                if (visited.has(value)) {
+                    return;
+                }
+                visited.add(value);
+            }
+            return value;
+        };
+    };
+
+    console.log('id: ' + req.query.id);
+    console.log('tag: ' + req.query.tag);
+
+    client.folders.update(req.query.id, { tags: [] })
+        .then(updatedFile => {
+            console.log('Tag removal File info received!', updatedFile);
+            /* updatedFile => {
+                type: 'file',
+                id: '11111',
+                name: 'New name.pdf'
+            }
+            */
+        });
+});
+
 // DO SEARCH
 // route for handling requests from the Angular client
 app.get('/api/search', (req, res) => {
@@ -59,11 +80,8 @@ app.get('/api/search', (req, res) => {
         req.query.searchTerm,
         {
             fields: 'name,id,description,tags',
-            // file_extensions: 'pdf,doc',
             limit: 200,
-            offset: 0,
-            ancestor_folder_ids: "165682361236,165679997956,165680323304,165681470106,173746409655,165681353082,165681298231"
-            // content_types: ["tags"]
+            offset: 0
         })
         .then(results => {
             console.log('Data received!');
@@ -99,22 +117,11 @@ app.get('/api/searchByTag', (req, res) => {
 
 app.get('/api/filesByFolder', (req, res) => {
 
-    var BoxSDK = require('box-node-sdk');
-
-    // Initialize the SDK with your app credentials
-    var sdk = new BoxSDK({
-        clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
-        clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
-    });
-
-    // Create a basic API client, which does not automatically refresh the access token
-    var client = sdk.getBasicClient('Cdm14KoIRAIzXga587BfcDvrXXfs0w61');
-
     client.folders.getItems(
-        '114825448225',
+        req.query.id,
         {
             usemarker: 'false',
-            fields: 'name',
+            // fields: 'name',
             offset: 0,
             limit: 25
         })
@@ -131,8 +138,6 @@ app.get('/api/filesByFolder', (req, res) => {
 });
 
 app.get('/api/auth', (req, res) => {
-
-    console.log('here!');
 
     var BoxSDK = require('box-node-sdk');
 
@@ -165,15 +170,13 @@ app.get('/api/dojson', (req, res) => {
 app.get('/api/writeJson', (req, res) => {
     const fs = require('fs');
 
-    let rawdata = require('./app/tag-array.json');
-    // let tagData = JSON.parse(rawdata);
+    let rawdata = JSON.parse(fs.readFileSync('./app/tag-array.json', 'utf8'));
     let tagObject = { tag: req.query.tag, count: req.query.count };
-    rawdata.tagDataDad.push(tagObject);
+    rawdata.push(tagObject);
 
     let data = JSON.stringify(rawdata);
-    console.log('data', data);
+    console.log('data damit', rawdata);
     fs.writeFileSync('./app/tag-array.json', data);
-    console.log('Data written to file');
 
     res.json({
         message:
@@ -183,16 +186,8 @@ app.get('/api/writeJson', (req, res) => {
 });
 
 app.get('/api/getFileInfo', (req, res) => {
-    //    var BoxSDK = require('box-node-sdk');
-    console.log('id in node: ' + req.query.id);
-    // Initialize the SDK with your app credentials
-    // var sdk = new BoxSDK({
-    //     clientID: '1rcqsqivxd3hd6tr7f7mhnd04jpq872z',
-    //     clientSecret: 'bhCUuokWcnMFDdZIx6D21gsDFDdR467o'
-    // });
 
-    // // Create a basic API client, which does not automatically refresh the access token
-    // var client = sdk.getBasicClient('JRexxo9ozfNR6YCRVeYLpGrWjw5cyUYI');
+    console.log('id in node: ' + req.query.id);
 
     client.files.get('1017868008921')
         .then(file => {
@@ -201,7 +196,6 @@ app.get('/api/getFileInfo', (req, res) => {
                 data: file
             });
         });
-
 });
 
 // Listen on `port` and 0.0.0.0

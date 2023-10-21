@@ -1,4 +1,49 @@
-<p>room-detail works!</p>
+<!-- <p>room-detail works!</p>
 <pre>
-    {{data | json}}
-</pre>
+    {{parentFolder | json}}
+</pre> -->
+<div class="primary">
+    <main class="main" role="main">
+        <article class="post">
+            <header class="post__header">
+                <h1 class="post__title">{{ parentFolder.name }}</h1>
+            </header>
+            <div class="content post__content clearfix">
+                <h3 id="keywords">Keywords</h3>
+                <ul *ngFor="let tag of parentFolder.tags">
+                    <li><a href="http://vocab.getty.edu/page/aat/300045614">{{ tag }}</a></li>
+                </ul>
+                <h3 id="garden-description">Room Description</h3>
+
+                <p *ngFor="let detail of wallDetail.description"> {{ detail }} </p>
+
+                <div *ngFor="let wall of wallDetail.walls">
+                    <h4>{{ wall.name}} Wall</h4>
+                    <p>{{ wall.description }}</p>
+                    <p>images go here</p>
+                    <p>image description goes here</p>
+                    <p>image credit goes here</p>
+                </div>
+
+                <!-- <h3 id="figures">Figures</h3>
+                <figure><img src="../images/domus_augustana_fig1.jpg" alt="Wall">
+                    <figcaption>
+                        <h4>Wall image goes here</h4>
+                    </figcaption>
+                </figure> -->
+                <!-- <h3 id="bibliography">Bibliography</h3>
+                <ul>
+                    <li>item</li>
+                    <li>item</li>
+                    <li>item</li>
+                </ul>
+                <h4 id="pleiades-id">Pleiades ID</h4>
+                <p><a href="https://pleiades.stoa.org/places/971691208">Palatine Hill (Pleiades)</a></p>
+                <h3 id="contributor">Contributor</h3>
+                <p>Name</p>
+                <h3 id="publication-date">Publication date</h3>
+                <p>appropriate date</p> -->
+            </div>
+        </article>
+    </main>
+</div>

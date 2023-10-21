@@ -50,7 +50,7 @@ export class TextSearchComponent {
 
   getRoomDetail(obj: any) {
     if (obj.id && obj.id.length > 0) {
-      this.router.navigate(['room-detail'], { queryParams: { searchTerm: obj.id } });
+      this.router.navigate(['room-detail'], { queryParams: { parentFolder: JSON.stringify(obj) } });
     }
   }
 

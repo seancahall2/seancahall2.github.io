@@ -1,0 +1,44 @@
+[
+    {
+        "id": 7,
+        "folder": "114743022419",
+        "description": [
+            "This cubiculum has similar wall decoration on each wall: five vertical panels at the center of which is a subject picture. The second and fourth panels are of illusionistic architecture, including an aedicula frame in green supporting an entablature and griffons, from which a garland is draped and draws the attention to the central panel. The first and fifth panels are on red ground with a picture in the center; on the south wall, these are roundels within which figures face toward the center of the wall. The dado contains excised decorations on a black ground, though much of the dado is lost. Much of the upper parts of the wall are lost, though the south and east walls preserve enough to show a small still life, more illusionistic architecture, and another central subject picture would have decorated the space. On the south wall, two pink columns support an entablature with a decorative frieze, crowned at the center with two theatrical masks. The subject picture is of two seated figures, one of which is male and holds a wreath over the head of the female. The picture preserves gouges from when the Bourbon court decided to leave wall paintings in situ but did not want others to take them from the premises (as they had done with others from the site, including the famous Flora image and the roundels at the end panels of the south wall of this room). The portraits at the end panels in roundels have been replaced with replicas in situ. On the left, a crowned male youth in a yellow garment faces right; on the right panel, a satyr facing left holds a drinking cup, a kantharos."
+        ],
+        "walls": [
+            {
+                "name": "South",
+                "description": "This is the description for the south wall."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "folder": "114820480891",
+        "description": [
+            "This room is a cubiculum, decorated in the so-called carpet style. Parallel lines made up of light blue serrated edges and an interior line of minute foliage and blossoms proceed diagonally across the wall to create a series of diamond-like shapes. At the corners and intersections of the shapes is a small flower in various colors like gold and blue. At the center of each shape is a picture that changes in a pattern: a small cupid figure, a standing robed figure, a foliated blossom, a roundel, or a bird in flight.",
+            "All walls of this room preserve incised grid lines in the plaster that demonstrate how the pattern should go, though sometimes the design deviates from this grid. They are best seen on the line drawings of the walls.",
+            "The room’s dado is painted red. Since the East wall contains a doorway at the far left, its dado has only five panels compared to the six on the other walls. All panels are separated by candelabra that extend the height of the dado. The central panel is a floral design resting on a band of embroidered-like decoration. To the left of this panel is a tall, ornate gold tripod. Closest to the door is another floral design on a band of embroidery; at the door jamb, a gold pilaster is drawn. To the right of the central panel, a human robed figure stands in a gold aedicula. To the furthest right, a series of three garlands are suspended from a horizontal foliated cord; from the center top a theatrical mask is suspended. "
+        ],
+        "walls": [
+            {
+                "name": "East",
+                "description": "This is the description for the east wall."
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "folder": "114695148727",
+        "description": [
+            "The construction of the South wall in this room suggests an early 1st century BCE date. The other walls suggest construction in the mid-1st century CE or later. The proportions of the architectural features in the wall painting, especially on the South wall, suggest the room was considerably tall, though much of the wall decoration (especially its upper portion) is lost. It is possible this room functioned as a triclinium or oecus.",
+            "The wall painting on the South wall is in Second Style, depicting in the lower zone a podium with projecting pedestals. On the left pedestal, a column with a base rises from an elaborate orthostate in the dado; the dado is decorated to imitate giallo antico with gold and black bands and veining. Behind the column is a gold paneled wall, delineated with a band of red and a hint of a horizontal band of white."
+        ],
+        "walls": [
+            {
+                "name": "South",
+                "description": "This is the description for the south wall."
+            }
+        ]
+    }
+]

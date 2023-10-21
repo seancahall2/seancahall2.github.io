@@ -12,13 +12,18 @@ export class RoomDetailComponent {
   constructor(private http: HttpClient, private route: ActivatedRoute, private apiService: ApiService) { }
 
   data: any;
+  parentFolder: any;
+  roomDetail: any;
+  wallDetail: any;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       console.log('params: ', params);
-      if (params['searchTerm']) {
-        this.getRoomDetail(params['searchTerm']);
+      this.parentFolder = JSON.parse(params['parentFolder']);
+      if (this.parentFolder) {
+        this.getRoomDetail(this.parentFolder.id);
       }
+
     })
   }
 
@@ -27,11 +32,22 @@ export class RoomDetailComponent {
     if (id && id.length > 0) {
       this.apiService.getFolderItems(id).subscribe(items => {
         this.data = items;
-        console.log("room detail data: ", this.data);
+        this.getDescription();
       });
     }
   }
 
+  private getDescription() {
+    fetch('./assets/data/room-detail.json').then(res => res.json())
+      .then(jsonData => {
+        if (jsonData) {
+          this.roomDetail = JSON.parse(JSON.stringify(jsonData));
+          console.log("room detail data: ", this.roomDetail);
+          this.wallDetail = this.roomDetail.filter((item: any) => item.folder === this.parentFolder.id)[0];
+          console.log("wall detail: ", this.wallDetail);
+        }
+      });
+  }
 
   getFolderItems(id: any) {
     this.apiService.getFolderItems(id).subscribe(items => {

@@ -8,22 +8,45 @@ import * as mapboxgl from 'mapbox-gl';
 })
 export class MapComponent implements OnInit {
   map: mapboxgl.Map | undefined;
-  style = 'mapbox://styles/mapbox/streets-v12';
-  lat = 40.6990000;
-  lng = 14.5070000;
+  style = 'mapbox://styles/mapbox/satellite-streets-v12';
+  lat = 40.6997149605;
+  lng = 14.4924824587;
+
   constructor() { }
+
   ngOnInit() {
     this.map = new mapboxgl.Map({
       container: 'map',
       accessToken: environment.mapbox.accessToken,
       style: this.style,
-      // pitch: 60, // pitch in degrees
-      // bearing: -60, // bearing in degrees
-      zoom: 14,
-      // camera options properties - https://docs.mapbox.com/help/glossary/camera/
+      zoom: 1,
       center: [this.lng, this.lat]
     });
     // Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
+    this.map.on('load', () => {
+      if (this.map) {
+        this.map.resize();
+        this.zoomIn();
+      }
+    });
   }
+
+  zoomIn() {
+
+    if (this.map) {
+      this.map.easeTo({
+        center: [this.lng, this.lat],
+        zoom: 17,
+        // @ts-expect-error: Unreachable code error
+        speed: 0.2,
+        curve: 1,
+        duration: 4000,
+        easing(t) {
+          return t;
+        }
+      });
+    }
+  }
+
 }

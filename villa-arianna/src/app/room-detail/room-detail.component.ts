@@ -49,6 +49,10 @@ export class RoomDetailComponent {
       });
   }
 
+  setTag(obj: any) {
+    console.log("obj: ", obj);
+  }
+
   getFolderItems(id: any) {
     this.apiService.getFolderItems(id).subscribe(items => {
       this.data = items;

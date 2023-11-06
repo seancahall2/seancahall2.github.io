@@ -27,10 +27,13 @@ export class AppComponent implements OnInit {
     this.getTags();
   }
 
-  callExpress() {
-    this.apiService.getMessage().subscribe(data => {
-      this.message = data;
-    });
+  async callExpress() {
+    try {
+      this.message = await lastValueFrom(this.apiService.getMessage());
+      console.log('message: ', JSON.stringify(this.message));
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   private getTags() {
@@ -88,25 +91,29 @@ export class AppComponent implements OnInit {
     }
   }
 
-  removeTag(fileData: any) {
+  async removeTag(fileData: any) {
     console.log('fileData: ', fileData);
-    fileData.forEach((value: any) => {
-      console.log(value);
+    await fileData.forEach((value: any) => {
       if (value.type === 'folder') {
-        this.apiService.removeTag(value.tags, value.id).subscribe((data: any) => {
+        try {
+          const data = lastValueFrom(this.apiService.removeTag(value.tags, value.id))
           console.log('data: ', data);
-        });
+        } catch (error) {
+          console.error(error);
+        }
       }
     });
 
   }
 
-  writeJson(tag: string, count: number) {
-    this.apiService.writeJson(tag, count).subscribe(data => {
-      this.data = data;
-      console.log(JSON.stringify(data));
+  async writeJson(tag: string, count: number) {
+    try {
+      this.data = await lastValueFrom(this.apiService.writeJson(tag, count));
+      console.log(JSON.stringify(this.data));
       this.getFileInfo()
-    });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }

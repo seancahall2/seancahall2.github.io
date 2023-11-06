@@ -42,41 +42,35 @@ export class TextSearchComponent {
     }
   }
 
-  doJSON() {
-    this.apiService.doJSON().subscribe(data => {
-      this.data = data;
-    });
-  }
-
   getRoomDetail(obj: any) {
     if (obj.id && obj.id.length > 0) {
       this.router.navigate(['room-detail'], { queryParams: { parentFolder: JSON.stringify(obj) } });
     }
   }
 
-  callExpress() {
-    this.apiService.getMessage().subscribe(data => {
-      this.message = data;
-    });
+  async testAuth() {
+    try {
+      this.message = await lastValueFrom(this.apiService.testAuth());
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  testAuth() {
-    this.apiService.testAuth().subscribe(data => {
-      this.message = data;
-    });
+  async getFolderItems(id: any) {
+    try {
+      this.data = await lastValueFrom(this.apiService.getFolderItems(id));
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  getFolderItems(id: any) {
-    this.apiService.getFolderItems(id).subscribe(items => {
-      this.data = items;
-    });
-  }
-
-  doSearch(term: string) {
-    this.apiService.doSearch(term).subscribe(items => {
-      this.data = items;
+  async doSearch(term: string) {
+    try {
+      this.data = await lastValueFrom(this.apiService.doSearch(term))
       this.tag = term;
-    });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }
